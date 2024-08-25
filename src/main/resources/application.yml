@@ -3,11 +3,6 @@ spring:
     name: 'srv-neg-employee-configuration-v1'
   profiles.active: local
 
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      client-id: 'sample-producer'
-      acks: 'all'
 
   cloud:
     config:
@@ -65,4 +60,4 @@ management.endpoints.web.exposure.include: 'health'
 
 logging:
   level:
-    com.pe.relari.business.api: TRACE
+    com.pe.relari.srv_neg_employee_configuration_v1: TRACE

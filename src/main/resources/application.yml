@@ -23,7 +23,7 @@ application:
     version: '@project.version@'
     description: '@project.description@'
   api:
-    path: '/business/api/v1/employees'
+    path: '/srv/neg/v1/employee-configuration'
 
   backend:
     errors:

@@ -3,16 +3,11 @@ package com.pe.relari.srv_neg_employee_configuration_v1.employee.service.impl;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.dao.EmployeeDao;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Employee;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.service.EmployeeService;
-
-import com.pe.relari.srv_neg_employee_configuration_v1.employee.topic.SampleProducer;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
-
 import lombok.AllArgsConstructor;
-
 import org.springframework.stereotype.Service;
-import reactor.adapter.rxjava.RxJava2Adapter;
 
 /**
  * <b>Class:</b> EmployeeServiceImpl.</br>
@@ -25,7 +20,6 @@ import reactor.adapter.rxjava.RxJava2Adapter;
 class EmployeeServiceImpl implements EmployeeService {
 
   private final EmployeeDao employeeDao;
-  private final SampleProducer sampleProducer;
 
   @Override
   public Observable<Employee> findAll() {
@@ -34,10 +28,7 @@ class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public Completable save(Employee employee) {
-    return employeeDao.save(employee)
-            .andThen(RxJava2Adapter.monoToCompletable(
-                    sampleProducer.sendMessages(employee)
-            ));
+    return employeeDao.save(employee);
   }
 
   @Override

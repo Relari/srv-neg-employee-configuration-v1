@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: 'srv-neg-employee-configuration-v1'
+  profiles.active: local
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      client-id: 'sample-producer'
+      acks: 'all'
+
+  cloud:
+    config:
+      enabled: false
+      uri: http://localhost:8888
+#    vault:
+#      application:
+#        name: ${spring.application.name}
+#      scheme: http
+#      authentication: TOKEN
+#      host: localhost
+#      token: 00000000-0000-0000-0000-000000000000
+#      port: 8200
+
+application:
+  info:
+    name: '@project.name@'
+    version: '@project.version@'
+    description: '@project.description@'
+  api:
+    path: '/business/api/v1/employees'
+
+  backend:
+    errors:
+      EMPLOYEE_NOT_SAVE:
+        description: 'Error al guardar al empleado.'
+        status: INTERNAL_ERROR
+      EMPLOYEE_NOT_FOUND:
+        description: 'Empleado no encontrado.'
+        status: NOT_FOUND
+      EMPLOYEE_NOT_UPDATE:
+        description: 'Error al actualizar al empleado.'
+        status: INTERNAL_ERROR
+
+server:
+  port: 8081
+  error:
+    include-message: always
+
+springdoc:
+  api-docs:
+    path: '${application.api.path}/openapi'
+
+  swagger-ui:
+    path: '${application.api.path}/swagger-ui.html'
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:@project.version@
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8090/eureka/'
+
+management.endpoints.web.exposure.include: 'health'
+
+logging:
+  level:
+    com.pe.relari.business.api: TRACE

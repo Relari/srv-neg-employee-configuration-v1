@@ -1,21 +1,20 @@
 package com.pe.relari.srv_neg_employee_configuration_v1.controller;
 
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.PersonResponse;
-import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.TestMapper;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.service.EmployeeService;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
-
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.TestMapper;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.observers.TestObserver;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
-@ExtendWith(MockitoExtension.class)
+import org.mockito.MockitoAnnotations;
+
 class EmployeeControllerTest {
 
   @Mock
@@ -23,6 +22,11 @@ class EmployeeControllerTest {
 
   @InjectMocks
   private EmployeeController employeeController;
+
+  @BeforeEach
+  void init() throws Exception {
+    MockitoAnnotations.openMocks(this).close();
+  }
 
   @Test
   void whenFindAllThenReturnListEmployees() {

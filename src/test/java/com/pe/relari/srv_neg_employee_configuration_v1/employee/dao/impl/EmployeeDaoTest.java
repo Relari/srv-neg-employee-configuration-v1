@@ -4,17 +4,16 @@ import com.pe.relari.srv_neg_employee_configuration_v1.employee.dao.repository.E
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Employee;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.TestMapper;
 import io.reactivex.observers.TestObserver;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Collections;
 import java.util.Optional;
 
-@ExtendWith(MockitoExtension.class)
 class EmployeeDaoTest {
 
   @Mock
@@ -22,6 +21,11 @@ class EmployeeDaoTest {
 
   @InjectMocks
   private EmployeeDaoImpl employeeDao;
+
+  @BeforeEach
+  void init() throws Exception {
+    MockitoAnnotations.openMocks(this).close();
+  }
 
   @Test
   void whenFindAllThenReturnListEmployees() {

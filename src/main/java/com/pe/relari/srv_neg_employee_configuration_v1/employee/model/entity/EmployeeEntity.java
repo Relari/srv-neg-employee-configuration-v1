@@ -1,16 +1,9 @@
 package com.pe.relari.srv_neg_employee_configuration_v1.employee.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.JobTitleCategory;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.GenderCategory;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.JobTitleCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -47,29 +40,53 @@ public class EmployeeEntity {
   private String firstName;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "jobTitle", length = 50, nullable = false)
-  private JobTitleCategory jobTitle;
-
-  @Enumerated(EnumType.STRING)
   @Column(name = "gender", length = 1, nullable = false)
   private GenderCategory gender;
-
-  @Column(name = "salary", nullable = false)
-  private Double salary;
-
-  @Column(name = "isActive", nullable = false)
-  private Boolean isActive;
 
   @Column(name = "birthdate", nullable = false, columnDefinition = "DATE")
   private LocalDate birthdate;
 
+  @Column(name = "isActive", nullable = false)
+  private Boolean isActive;
+
   @Column(name = "creationDate", nullable = false, columnDefinition = "TIMESTAMP")
   private LocalDateTime creationDate;
 
+  /**
+   * Datos del contacto.
+   */
   @Column(name = "email", length = 50, nullable = false)
   private String email;
 
   @Column(name = "phoneNumber", length = 9, nullable = false)
   private String phoneNumber;
+
+  /**
+   * Datos del cargo y sueldo del empleado.
+   */
+  @Enumerated(EnumType.STRING)
+  @Column(name = "jobTitle", length = 50, nullable = false)
+  private JobTitleCategory jobTitle;
+
+  @Column(name = "salary", nullable = false)
+  private Double salary;
+
+  /**
+   * Datos de las credenciales del empleado.
+   */
+  @Column(name = "username", nullable = false)
+  private String username;
+
+  @Column(name = "password", nullable = false)
+  private String password;
+
+//  @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+//  private ContactEntity contact;
+//
+//  @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+//  private CredentialEntity credential;
+//
+//  @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+//  private CompanyEntity company;
 
 }

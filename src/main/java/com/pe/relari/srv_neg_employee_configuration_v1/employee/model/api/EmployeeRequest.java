@@ -68,33 +68,11 @@ public class EmployeeRequest {
   @Pattern(regexp = EmployeeConstant.REGEXP_SEX)
   @Schema(
           description = "Representa el género o sexo del empleado.",
-          name = "sex",
+          name = "gender",
           implementation = String.class,
           example = "M",
           required = true)
   private String gender;
-
-  @NotNull
-  @NotBlank
-//  @Pattern(regexp = EmployeeConstant.ONLY_LETTERS)
-  @JobTitle
-  @Size(min = 1, max = 50)
-  @Schema(
-          description = "Representa el cargo o posición del empleado en la empresa",
-          name = "jobTitle",
-          implementation = String.class,
-          example = "Asistente",
-          required = true)
-  private String jobTitle;
-
-  @NotNull
-  @Schema(
-          description = "Representa el salario o sueldo del empleado",
-          name = "salary",
-          implementation = Double.class,
-          example = "1500",
-          required = true)
-  private Double salary;
 
   @Schema(
           description = "Representa la fecha de nacimiento del empleado",
@@ -110,5 +88,9 @@ public class EmployeeRequest {
   private String birthdate;
 
   @Valid
-  private ContactInfoRequest contactInfo;
+  private ContactRequest contactInfo;
+
+  @Valid
+  private CompanyRequest company;
+
 }

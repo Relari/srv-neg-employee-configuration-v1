@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestConstant {
 
-
+    public  static final String employeeJson = "employee.json";
 
 }

@@ -8,5 +8,6 @@ class EmployeeConstant {
 
   static final String REGEXP_ONLY_LETTERS = "[a-zA-Z]*";
   static final String REGEXP_SEX = "M|F";
+  static final String REGEXP_LETTERS_AND_NUMBERS = "[a-zA-Z0-9]";
 
 }

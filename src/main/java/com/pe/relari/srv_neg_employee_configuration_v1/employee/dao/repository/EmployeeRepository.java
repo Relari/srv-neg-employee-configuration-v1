@@ -5,6 +5,8 @@ import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.entity.Emp
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * <b>Interface:</b> EmployeeRepository.</br>
  * @author Renzo Lavado Rivas.
@@ -13,5 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
+
+    Optional<EmployeeEntity> findByUsername(String username);
 
 }

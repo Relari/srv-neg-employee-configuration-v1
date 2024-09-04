@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class Constants {
     
     public static final String EMPTY = "";
+    public static final String POINT = ".";
+    public static final String ARROBA = "@";
 
     public static final String REGEXP_TIPO_DOCUMENTO = "DNI|PASAPORTE";
     public static final String REGEXP_TIPO_COMPROBANTE = "BOLETA|FACTURA";

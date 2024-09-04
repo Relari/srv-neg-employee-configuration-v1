@@ -26,13 +26,14 @@ import org.springframework.stereotype.Component;
 class EmployeeDaoImpl implements EmployeeDao {
 
   private final EmployeeRepository employeeRepository;
+  private final EmployeeToEntityMapper employeeToEntityMapper;
 
   @Override
   public Observable<Employee> findAll() {
     return Observable.fromCallable(employeeRepository::findAll)
         .subscribeOn(Schedulers.io())
         .flatMapIterable(employeeEntities -> employeeEntities)
-        .map(EmployeeMapper::mapEmployee)
+        .map(employeeToEntityMapper::mapEmployee)
         .doOnNext(employee -> log.trace(employee.toString()))
         .doOnSubscribe(disposable -> log.debug("Starting to list the employees."))
         .doOnComplete(() -> log.info("The list of employees is completely ready."));
@@ -40,7 +41,7 @@ class EmployeeDaoImpl implements EmployeeDao {
 
   @Override
   public Completable save(Employee employee) {
-    return Single.fromCallable(() -> EmployeeMapper.mapEmployeeEntity(employee))
+    return Single.fromCallable(() -> employeeToEntityMapper.mapEmployeeEntity(employee))
         .map(employeeRepository::save)
         .subscribeOn(Schedulers.io())
         .onErrorResumeNext(throwable ->
@@ -62,7 +63,7 @@ class EmployeeDaoImpl implements EmployeeDao {
 
     return Single.fromCallable(() -> findBy(id))
         .subscribeOn(Schedulers.io())
-        .map(EmployeeMapper::mapEmployee)
+        .map(employeeToEntityMapper::mapEmployee)
         .doOnSubscribe(disposable ->
                 log.debug("Consulting the employee with [id={}]", id))
         .doOnError(throwable ->

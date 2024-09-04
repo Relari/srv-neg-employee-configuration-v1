@@ -70,7 +70,7 @@ class EmployeeController {
   @GetMapping
   public Observable<PersonResponse> listOfEmployees() {
     return this.employeeService.findAll()
-            .map(EmployeeMapper::mapPersonResponse);
+            .map(RequestToEmployeeMapper::mapPersonResponse);
   }
 
   @Operation(
@@ -114,7 +114,7 @@ class EmployeeController {
   public Single<PersonResponse> findEmployeeById(
           @PathVariable("id") Integer id) {
     return employeeService.findById(id)
-            .map(EmployeeMapper::mapPersonResponse);
+            .map(RequestToEmployeeMapper::mapPersonResponse);
   }
 
   @Operation(
@@ -137,7 +137,7 @@ class EmployeeController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public Completable save(@RequestBody @Valid EmployeeRequest employeeRequest) {
-    return Single.fromCallable(() -> EmployeeMapper.mapEmployee(employeeRequest))
+    return Single.fromCallable(() -> RequestToEmployeeMapper.mapEmployee(employeeRequest))
             .flatMapCompletable(employeeService::save);
   }
 

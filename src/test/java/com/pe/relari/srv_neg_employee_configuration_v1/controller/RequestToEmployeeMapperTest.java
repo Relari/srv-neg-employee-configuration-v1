@@ -9,14 +9,14 @@ import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.TestMapper;
 
 import org.junit.jupiter.api.Test;
 
-class EmployeeMapperTest {
+class RequestToEmployeeMapperTest {
 
   @Test
   void mapEmployee() {
 
     EmployeeRequest employeeRequest = TestMapper.employeeRequest();
 
-    Employee employee = EmployeeMapper.mapEmployee(employeeRequest);
+    Employee employee = RequestToEmployeeMapper.mapEmployee(employeeRequest);
 
     assertEquals(employeeRequest.getFirstName(), employee.getFirstName());
 
@@ -26,7 +26,7 @@ class EmployeeMapperTest {
   void mapPersonResponse() {
 
     Employee employee = TestMapper.employee();
-    PersonResponse personResponse = EmployeeMapper.mapPersonResponse(employee);
+    PersonResponse personResponse = RequestToEmployeeMapper.mapPersonResponse(employee);
 
     assertEquals(employee.getFirstName(), personResponse.getFirstName());
   }

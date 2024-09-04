@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContactInfoRequest {
+public class ContactRequest {
 
     @Schema(
             description = "Representa el correo electronico del empleado",

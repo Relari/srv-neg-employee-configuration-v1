@@ -32,7 +32,7 @@ import lombok.ToString;
 public class EmployeeRequest {
 
   @NotBlank
-  @Pattern(regexp = EmployeeConstant.REGEXP_ONLY_LETTERS)
+  @Pattern(regexp = Constants.REGEXP_ONLY_LETTERS)
   @Size(min = 1, max = 50)
   @Schema(
           description = "Representa el nombre del empleado",
@@ -43,7 +43,7 @@ public class EmployeeRequest {
   private String firstName;
 
   @NotBlank
-  @Pattern(regexp = EmployeeConstant.REGEXP_ONLY_LETTERS)
+  @Pattern(regexp = Constants.REGEXP_ONLY_LETTERS)
   @Size(min = 1, max = 50)
   @Schema(
           description = "Representa el apellido paterno del empleado",
@@ -54,7 +54,7 @@ public class EmployeeRequest {
   private String fatherLastName;
 
   @NotBlank
-  @Pattern(regexp = EmployeeConstant.REGEXP_ONLY_LETTERS)
+  @Pattern(regexp = Constants.REGEXP_ONLY_LETTERS)
   @Size(min = 1, max = 50)
   @Schema(
           description = "Representa el apellido materno del empleado",
@@ -65,7 +65,7 @@ public class EmployeeRequest {
   private String motherLastName;
 
   @NotBlank
-  @Pattern(regexp = EmployeeConstant.REGEXP_SEX)
+  @Pattern(regexp = Constants.REGEXP_SEX)
   @Schema(
           description = "Representa el género o sexo del empleado.",
           name = "gender",

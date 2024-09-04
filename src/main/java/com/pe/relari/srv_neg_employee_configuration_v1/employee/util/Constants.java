@@ -15,6 +15,10 @@ public class Constants {
     public static final String POINT = ".";
     public static final String ARROBA = "@";
 
+    public static final String REGEXP_ONLY_LETTERS = "[a-zA-Z]*";
+    public static final String REGEXP_SEX = "M|F";
+    public static final String REGEXP_JOBS_TITLES = "SCRUM_MASTER|TEAM_LEAD|DEVELOPER|MANAGER|ARCHITECT";
+    public static final String REGEXP_LETTERS_AND_NUMBERS = "[a-zA-Z0-9]";
     public static final String REGEXP_TIPO_DOCUMENTO = "DNI|PASAPORTE";
     public static final String REGEXP_TIPO_COMPROBANTE = "BOLETA|FACTURA";
     public static final String REGEXP_ONLY_NUMBER = "[0-9]*";

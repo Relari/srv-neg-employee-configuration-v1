@@ -1,6 +1,7 @@
 package com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api;
 
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.annotation.JobTitle;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.Constants;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ public class CompanyRequest {
 
     @NotNull
     @NotBlank
-//  @Pattern(regexp = EmployeeConstant.ONLY_LETTERS)
+//    @Pattern(regexp = Constants.REGEXP_JOBS_TITLES)
     @JobTitle
     @Size(min = 1, max = 50)
     @Schema(

@@ -3,12 +3,13 @@
   "fatherLastName": "Lavado",
   "motherLastName": "Rivas",
   "gender": "M",
-  "password": "Relari@dev",
-  "jobTitle": "DEVELOPER",
-  "salary": 2700.0,
   "birthdate": "03-05-1995",
   "contactInfo": {
     "email" :"renzolavador@gmail.com",
     "phoneNumber": "979896723"
+  },
+  "company" : {
+    "jobTitle": "DEVELOPER",
+    "salary": 2700.0
   }
 }

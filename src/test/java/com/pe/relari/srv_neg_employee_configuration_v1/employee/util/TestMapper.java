@@ -10,7 +10,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.StringJoiner;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestMapper {
@@ -36,39 +35,37 @@ public class TestMapper {
         .gender(GenderCategory.valueOf(request.getGender()))
         .birthdate(Utility.mapLocalDate(request.getBirthdate()))
         .contact(new Contact(request.getContactInfo()))
-        .credential(new Credential(buildUsername(request), password))
-        .company(new Company(
-                JobTitleCategory.valueOf(request.getCompany().getJobTitle()),
-                request.getCompany().getSalary()
+        .credential(new Credential(
+                Utility.buildUsername(request.getFirstName(), request.getFatherLastName()),
+                password
         ))
+        .company(new Company(request.getCompany()))
         .isActive(isActive)
         .creationDate(dateCreated)
         .build();
   }
 
-  public static String buildUsername(EmployeeRequest request) {
-    return new StringJoiner(Constants.POINT)
-            .add(request.getFirstName())
-            .add(request.getFatherLastName())
-            .toString()
-            .toLowerCase();
-  }
-
   public static EmployeeEntity employeeEntity() {
     var employee = employee();
     return EmployeeEntity.builder()
-        .id(idEmployee)
+        .id(employee.getIdEmployee())
         .firstName(employee.getFirstName())
         .fatherLastName(employee.getFatherLastName())
         .motherLastName(employee.getMotherLastName())
         .gender(employee.getGender())
         .birthdate(employee.getBirthdate())
-//        .email(employee.getContact().getEmail())
-//        .phoneNumber(employee.getContact().getPhoneNumber())
-//        .username(Utility.buildUsername(employee.getFirstName(), employee.getFatherLastName()))
-//        .password(password)
-//        .jobTitle(employee.getCompany().getJobTitle())
-//        .salary(employee.getCompany().getSalary())
+
+        .email(employee.getContact().getEmail())
+        .phoneNumber(employee.getContact().getPhoneNumber())
+
+        .username(Utility.buildUsername(
+                employee.getFirstName(), employee.getFatherLastName()
+        ))
+        .password(password)
+
+        .jobTitle(employee.getCompany().getJobTitle())
+        .salary(employee.getCompany().getSalary())
+
         .creationDate(dateCreated)
         .isActive(employee.getIsActive())
         .build();

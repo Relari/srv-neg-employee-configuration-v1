@@ -19,6 +19,8 @@ class EmployeeDaoTest {
   @Mock
   private EmployeeToEntityMapper employeeToEntityMapper;
 
+
+
   @Mock
   private EmployeeRepository employeeRepository;
 
@@ -36,6 +38,9 @@ class EmployeeDaoTest {
     Mockito.when(employeeRepository.findAll())
         .thenReturn(Collections.singletonList(TestMapper.employeeEntity()));
 
+    Mockito.when(employeeToEntityMapper.mapEmployee(Mockito.any()))
+            .thenReturn(TestMapper.employee());
+
     TestObserver<Employee> testObserver = employeeDao.findAll().test();
 
     testObserver.awaitTerminalEvent();
@@ -49,6 +54,9 @@ class EmployeeDaoTest {
 
     Mockito.when(employeeRepository.findById(Mockito.anyInt()))
         .thenReturn(Optional.of(TestMapper.employeeEntity()));
+
+    Mockito.when(employeeToEntityMapper.mapEmployee(Mockito.any()))
+            .thenReturn(TestMapper.employee());
 
     TestObserver<Employee> testObserver = employeeDao.findById(1).test();
 
@@ -78,6 +86,9 @@ class EmployeeDaoTest {
     Mockito.when(employeeRepository.findById(Mockito.anyInt()))
             .thenReturn(Optional.empty());
 
+    Mockito.when(employeeToEntityMapper.mapEmployee(Mockito.any()))
+            .thenReturn(null);
+
     TestObserver<Employee> testObserver = employeeDao.findById(1).test();
 
     testObserver.awaitTerminalEvent();
@@ -86,22 +97,22 @@ class EmployeeDaoTest {
 
   }
 
-//  @Test
-//  void whenSaveEmployeeThenReturnError() {
+  @Test
+  void whenSaveEmployeeThenReturnError() {
 
-//    Mockito.when(errorFactory.buildException(Mockito.any(), Mockito.any()))
-//            .thenReturn(new RuntimeException());
+    Mockito.when(employeeToEntityMapper.mapEmployee(Mockito.any()))
+            .thenReturn(TestMapper.employee());
 
-//    Mockito.when(employeeRepository.save(Mockito.any()))
-//            .thenReturn(new Throwable());
-//
-//    TestObserver<Void> testObserver = employeeDao.save(TestMapper.employee()).test();
-//
-//    testObserver.awaitTerminalEvent();
-//
-//    testObserver.assertNotComplete().assertNoValues();
-//
-//  }
+    Mockito.when(employeeRepository.save(Mockito.any()))
+            .thenReturn(new Throwable());
+
+    TestObserver<Void> testObserver = employeeDao.save(TestMapper.employee()).test();
+
+    testObserver.awaitTerminalEvent();
+
+    testObserver.assertNotComplete().assertNoValues();
+
+  }
 
 //  private RuntimeException employeeException() {
 //    return errorFactory.buildException(ErrorCategory.EMPLOYEE_NOT_SAVE, null);

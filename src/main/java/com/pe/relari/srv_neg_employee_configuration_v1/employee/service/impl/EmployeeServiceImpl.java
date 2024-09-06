@@ -35,5 +35,10 @@ class EmployeeServiceImpl implements EmployeeService {
   public Single<Employee> findById(Integer id) {
     return employeeDao.findById(id);
   }
-  
+
+  @Override
+  public Single<Employee> findByUsername(String username) {
+    return employeeDao.findByUsername(username);
+  }
+
 }

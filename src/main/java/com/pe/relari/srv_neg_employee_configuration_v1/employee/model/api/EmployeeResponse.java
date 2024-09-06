@@ -7,10 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDate;
-
 /**
- * <b>Class:</b> PersonResponse.</br>
+ * <b>Class:</b> EmployeeResponse.</br>
  * @author Renzo Lavado Rivas.
  * @version 1.0.0
  */
@@ -20,7 +18,7 @@ import java.time.LocalDate;
 @Builder
 @Getter
 @ToString
-public class PersonResponse {
+public class EmployeeResponse {
 
   @Schema(
           description = "Representa el nombre del empleado.",
@@ -56,5 +54,9 @@ public class PersonResponse {
           example = "03-05-1995",
           implementation = String.class)
   private String birthdate;
+
+  private ContactResponse contact;
+
+  private CompanyResponse company;
 
 }

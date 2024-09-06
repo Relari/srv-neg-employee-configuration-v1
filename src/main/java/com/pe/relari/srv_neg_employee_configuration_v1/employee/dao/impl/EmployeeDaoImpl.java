@@ -61,7 +61,7 @@ class EmployeeDaoImpl implements EmployeeDao {
   @Override
   public Single<Employee> findById(Integer id) {
 
-    return Single.fromCallable(() -> findBy(id))
+    return Single.fromCallable(() -> searchById(id))
         .subscribeOn(Schedulers.io())
         .map(employeeToEntityMapper::mapEmployee)
         .doOnSubscribe(disposable ->
@@ -72,11 +72,27 @@ class EmployeeDaoImpl implements EmployeeDao {
                 log.info("The employee was found with the [id={}]", id));
   }
 
-  private EmployeeEntity findBy(Integer id) {
+  private EmployeeEntity searchById(Integer id) {
     return employeeRepository.findById(id)
-            .orElseThrow(() ->
-                    ApiException.of(ErrorCategory.EMPLOYEE_NOT_FOUND)
-            );
+            .orElseThrow(() -> ApiException.of(ErrorCategory.EMPLOYEE_NOT_FOUND));
+  }
+
+  @Override
+  public Single<Employee> findByUsername(String username) {
+    return Single.fromCallable(() -> searchByUsername(username))
+            .subscribeOn(Schedulers.io())
+            .map(employeeToEntityMapper::mapEmployee)
+            .doOnSubscribe(disposable ->
+                    log.debug("Consulting the employee with [username={}]", username))
+            .doOnError(throwable ->
+                    log.error("Employee not found - [username={}]", username, throwable))
+            .doOnSuccess(employee ->
+                    log.info("The employee was found with the [username={}]", username));
+  }
+
+  private EmployeeEntity searchByUsername(String username) {
+    return employeeRepository.findByUsername(username)
+            .orElseThrow(() -> ApiException.of(ErrorCategory.EMPLOYEE_NOT_FOUND));
   }
 
 }

@@ -2,8 +2,10 @@ package com.pe.relari.srv_neg_employee_configuration_v1.controller;
 
 import static java.lang.Boolean.TRUE;
 
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.CompanyResponse;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.ContactResponse;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.EmployeeRequest;
-import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.PersonResponse;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.EmployeeResponse;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Company;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Contact;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Employee;
@@ -27,13 +29,15 @@ public class RequestToEmployeeMapper {
             .isActive(TRUE)
             .build();
   }
-  static PersonResponse mapPersonResponse(Employee employee) {
-    return PersonResponse.builder()
+  static EmployeeResponse mapPersonResponse(Employee employee) {
+    return EmployeeResponse.builder()
             .firstName(employee.getFirstName())
             .fatherLastName(employee.getFatherLastName())
             .motherLastName(employee.getMotherLastName())
             .gender(employee.getGender().name())
             .birthdate(Utility.formatDate(employee.getBirthdate()))
+            .contact(new ContactResponse(employee.getContact()))
+            .company(new CompanyResponse(employee.getCompany()))
             .build();
   }
 

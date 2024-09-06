@@ -19,4 +19,6 @@ public interface EmployeeDao {
   Completable save(Employee employee);
 
   Single<Employee> findById(Integer id);
+
+  Single<Employee> findByUsername(String username);
 }

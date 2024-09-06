@@ -41,4 +41,12 @@ class EmployeeServiceImpl implements EmployeeService {
     return employeeDao.findByUsername(username);
   }
 
+  @Override
+  public Completable deleteByUsername(String username) {
+    return employeeDao.findByUsername(username)
+            .flatMapCompletable(employee ->
+                    employeeDao.deleteById(employee.getIdEmployee())
+            );
+  }
+
 }

@@ -95,4 +95,10 @@ class EmployeeDaoImpl implements EmployeeDao {
             .orElseThrow(() -> ApiException.of(ErrorCategory.EMPLOYEE_NOT_FOUND));
   }
 
+  @Override
+  public Completable deleteById(Integer id) {
+    return Completable.complete()
+            .doOnComplete(() -> employeeRepository.deleteById(id));
+  }
+
 }

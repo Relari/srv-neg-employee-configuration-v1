@@ -3,7 +3,7 @@ package com.pe.relari.srv_neg_employee_configuration_v1.controller;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.exception.model.ErrorResponse;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.EmployeeResponse;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.service.EmployeeService;
-import io.reactivex.Single;
+import io.reactivex.Completable;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -11,22 +11,20 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "${application.api.path}")
 @AllArgsConstructor
-public class FindEmployeeController {
+public class DeleteEmployeeController {
 
     EmployeeService employeeService;
 
     @Operation(
             summary = "Obtiene la informacion de un empleado.",
-            method = "GET",
+            method = "DELETE",
             parameters = {
                     @Parameter(
                             description = "Usuario del Empleado",
@@ -61,11 +59,11 @@ public class FindEmployeeController {
                             )
                     )
             })
-    @GetMapping(path = "/{username}")
-    public Single<EmployeeResponse> findEmployeeByUsername(
+    @DeleteMapping(path = "/{username}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Completable deleteEmployeeByUsername(
             @PathVariable("username") String username) {
-        return employeeService.findByUsername(username)
-                .map(RequestToEmployeeMapper::mapPersonResponse);
+        return employeeService.deleteByUsername(username);
     }
 
 }

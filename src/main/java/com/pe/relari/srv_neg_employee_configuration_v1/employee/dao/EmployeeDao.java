@@ -21,4 +21,7 @@ public interface EmployeeDao {
   Single<Employee> findById(Integer id);
 
   Single<Employee> findByUsername(String username);
+
+  Completable deleteById(Integer id);
+
 }

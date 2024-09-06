@@ -21,4 +21,7 @@ public interface EmployeeService {
   Single<Employee> findById(Integer id);
 
   Single<Employee> findByUsername(String username);
+
+  Completable deleteByUsername(String username);
+
 }

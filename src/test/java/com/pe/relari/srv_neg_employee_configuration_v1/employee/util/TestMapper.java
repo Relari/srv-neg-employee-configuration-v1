@@ -34,6 +34,8 @@ public class TestMapper {
         .motherLastName(request.getMotherLastName())
         .gender(GenderCategory.valueOf(request.getGender()))
         .birthdate(Utility.mapLocalDate(request.getBirthdate()))
+        .documentType(DocumentTypeCategory.valueOf(request.getDocumentType()))
+        .documentNumber(request.getDocumentNumber())
         .contact(new Contact(request.getContactInfo()))
         .credential(new Credential(
                 Utility.buildUsername(request.getFirstName(), request.getFatherLastName()),
@@ -54,6 +56,8 @@ public class TestMapper {
         .motherLastName(employee.getMotherLastName())
         .gender(employee.getGender())
         .birthdate(employee.getBirthdate())
+        .documentType(employee.getDocumentType())
+        .documentNumber(employee.getDocumentNumber())
 
         .email(employee.getContact().getEmail())
         .phoneNumber(employee.getContact().getPhoneNumber())

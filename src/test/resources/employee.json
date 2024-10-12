@@ -4,6 +4,8 @@
   "motherLastName": "Rivas",
   "gender": "M",
   "birthdate": "03-05-1995",
+  "documentType": "DNI",
+  "documentNumber": "123456789",
   "contactInfo": {
     "email" :"renzolavador@gmail.com",
     "phoneNumber": "979896723"

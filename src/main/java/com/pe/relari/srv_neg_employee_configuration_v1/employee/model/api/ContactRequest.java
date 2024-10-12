@@ -33,6 +33,7 @@ public class ContactRequest {
             description = "Representa el numero telefonico del empleado",
             name = "phoneNumber",
             implementation = String.class,
+            pattern = Constants.REGEXP_PHONE_NUMBER,
             example = "987654321",
             required = true)
     @NotNull

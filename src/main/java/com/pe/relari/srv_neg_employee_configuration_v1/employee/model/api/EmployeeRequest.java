@@ -38,6 +38,7 @@ public class EmployeeRequest {
           description = "Representa el nombre del empleado",
           name = "firstName",
           implementation = String.class,
+          pattern = Constants.REGEXP_ONLY_LETTERS,
           example = "Daniel",
           required = true)
   private String firstName;
@@ -49,6 +50,7 @@ public class EmployeeRequest {
           description = "Representa el apellido paterno del empleado",
           name = "fatherLastName",
           implementation = String.class,
+          pattern = Constants.REGEXP_ONLY_LETTERS,
           example = "Gonzales",
           required = true)
   private String fatherLastName;
@@ -60,6 +62,7 @@ public class EmployeeRequest {
           description = "Representa el apellido materno del empleado",
           name = "motherLastName",
           implementation = String.class,
+          pattern = Constants.REGEXP_ONLY_LETTERS,
           example = "Perez",
           required = true)
   private String motherLastName;
@@ -70,6 +73,7 @@ public class EmployeeRequest {
           description = "Representa el género o sexo del empleado.",
           name = "gender",
           implementation = String.class,
+          pattern = Constants.REGEXP_SEX,
           example = "M",
           required = true)
   private String gender;
@@ -78,6 +82,7 @@ public class EmployeeRequest {
           description = "Representa la fecha de nacimiento del empleado",
           name = "birthdate",
           implementation = String.class,
+          pattern = Constants.REGEXP_DATE,
           example = "03-05-1995",
           required = true)
   @NotNull
@@ -86,6 +91,30 @@ public class EmployeeRequest {
   @Pattern(regexp = Constants.REGEXP_DATE)
   @JsonProperty("birthdate")
   private String birthdate;
+
+  @Schema(
+          description = "Representa la fecha de nacimiento del empleado",
+          name = "documentType",
+          implementation = String.class,
+          pattern = Constants.REGEXP_TIPO_DOCUMENTO,
+          example = "DNI",
+          required = true)
+  @NotNull
+  @NotBlank
+  @Pattern(regexp = Constants.REGEXP_TIPO_DOCUMENTO)
+  @JsonProperty("documentType")
+  private String documentType;
+
+  @Schema(
+          description = "Representa la fecha de nacimiento del empleado",
+          name = "documentNumber",
+          implementation = String.class,
+          example = "12345678",
+          required = true)
+  @NotNull
+  @NotBlank
+  @JsonProperty("documentNumber")
+  private String documentNumber;
 
   @Valid
   private ContactRequest contactInfo;

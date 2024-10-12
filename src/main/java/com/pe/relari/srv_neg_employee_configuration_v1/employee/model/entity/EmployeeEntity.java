@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.GenderCategory;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.JobTitleCategory;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.DocumentTypeCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,6 +46,13 @@ public class EmployeeEntity {
 
   @Column(name = "birthdate", nullable = false, columnDefinition = "DATE")
   private LocalDate birthdate;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "documentType", length = 30)
+  private DocumentTypeCategory documentType;
+
+  @Column(name = "documentNumber")
+  private String documentNumber;
 
   @Column(name = "isActive", nullable = false)
   private Boolean isActive;

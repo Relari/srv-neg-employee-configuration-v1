@@ -1,6 +1,7 @@
 package com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain;
 
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.Constants;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.DocumentTypeCategory;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.GenderCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +35,9 @@ public class Employee {
   private String firstName;
   private GenderCategory gender;
   private LocalDate birthdate;
+
+  private DocumentTypeCategory documentType;
+  private String documentNumber;
 
   private Contact contact;
 

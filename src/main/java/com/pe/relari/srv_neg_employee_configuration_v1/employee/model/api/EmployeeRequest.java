@@ -93,7 +93,7 @@ public class EmployeeRequest {
   private String birthdate;
 
   @Schema(
-          description = "Representa la fecha de nacimiento del empleado",
+          description = "Representa el tipo de documento del empleado",
           name = "documentType",
           implementation = String.class,
           pattern = Constants.REGEXP_TIPO_DOCUMENTO,
@@ -106,7 +106,7 @@ public class EmployeeRequest {
   private String documentType;
 
   @Schema(
-          description = "Representa la fecha de nacimiento del empleado",
+          description = "Representa el numero de documento del empleado",
           name = "documentNumber",
           implementation = String.class,
           example = "12345678",

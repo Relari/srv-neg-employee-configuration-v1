@@ -35,6 +35,8 @@ public class EmployeeToEntityMapper {
             .motherLastName(employeeEntity.getMotherLastName())
             .gender(employeeEntity.getGender())
             .birthdate(employeeEntity.getBirthdate())
+            .documentType(employeeEntity.getDocumentType())
+            .documentNumber(employeeEntity.getDocumentNumber())
             .credential(new Credential(
                     employeeEntity.getUsername(),
                     employeeEntity.getPassword()
@@ -95,6 +97,8 @@ public class EmployeeToEntityMapper {
             .fatherLastName(employee.getFatherLastName())
             .motherLastName(employee.getMotherLastName())
             .gender(employee.getGender())
+            .documentType(employee.getDocumentType())
+            .documentNumber(employee.getDocumentNumber())
             .birthdate(employee.getBirthdate())
             .isActive(employee.getIsActive())
             .creationDate(LocalDateTime.now())

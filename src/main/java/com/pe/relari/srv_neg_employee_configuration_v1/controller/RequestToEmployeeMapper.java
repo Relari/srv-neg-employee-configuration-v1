@@ -9,6 +9,7 @@ import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.api.Employ
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Company;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Contact;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.model.domain.Employee;
+import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.DocumentTypeCategory;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.GenderCategory;
 import com.pe.relari.srv_neg_employee_configuration_v1.employee.util.Utility;
 import lombok.AccessLevel;
@@ -24,6 +25,8 @@ public class RequestToEmployeeMapper {
             .motherLastName(employeeRequest.getMotherLastName())
             .gender(GenderCategory.valueOf(employeeRequest.getGender()))
             .birthdate(Utility.mapLocalDate(employeeRequest.getBirthdate()))
+            .documentType(DocumentTypeCategory.valueOf(employeeRequest.getDocumentType()))
+            .documentNumber(employeeRequest.getDocumentNumber())
             .contact(new Contact(employeeRequest.getContactInfo()))
             .company(new Company(employeeRequest.getCompany()))
             .isActive(TRUE)
@@ -36,6 +39,8 @@ public class RequestToEmployeeMapper {
             .motherLastName(employee.getMotherLastName())
             .gender(employee.getGender().name())
             .birthdate(Utility.formatDate(employee.getBirthdate()))
+            .documentType(employee.getDocumentType().name())
+            .documentNumber(employee.getDocumentNumber())
             .contact(new ContactResponse(employee.getContact()))
             .company(new CompanyResponse(employee.getCompany()))
             .build();

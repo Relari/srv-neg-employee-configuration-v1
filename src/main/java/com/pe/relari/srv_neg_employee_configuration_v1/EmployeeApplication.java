@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "Employee API",
+                title = "${spring.application.name}",
                 version = "${application.info.version}",
                 description = "${application.info.description}")
 )

@@ -3,11 +3,13 @@ spring:
     name: 'srv-neg-employee-configuration-v1'
   profiles.active: local
 
+  config:
+    import: env-dev.yml
 
   cloud:
     config:
       enabled: false
-      uri: http://localhost:8888
+      uri: ${CLOUD_CONFIG_URL}
 #    vault:
 #      application:
 #        name: ${spring.application.name}
@@ -54,10 +56,10 @@ eureka:
     instance-id: ${spring.application.name}:@project.version@
   client:
     serviceUrl:
-      defaultZone: 'http://localhost:8090/eureka/'
+      defaultZone: ${EUREKA_SERVER_URL}
 
 management.endpoints.web.exposure.include: 'health'
 
 logging:
   level:
-    com.pe.relari.srv_neg_employee_configuration_v1: TRACE
+    pe.com.relari.srv_neg_employee_configuration_v1: TRACE

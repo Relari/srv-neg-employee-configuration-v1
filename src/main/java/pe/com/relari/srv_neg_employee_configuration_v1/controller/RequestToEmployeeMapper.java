@@ -6,12 +6,13 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.api.CompanyResponse;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.api.ContactResponse;
+import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.api.DocumentResponse;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.api.EmployeeRequest;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.api.EmployeeResponse;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Company;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Contact;
+import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Document;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Employee;
-import pe.com.relari.srv_neg_employee_configuration_v1.employee.util.DocumentTypeCategory;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.util.GenderCategory;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.util.Utility;
 
@@ -25,8 +26,7 @@ public class RequestToEmployeeMapper {
             .motherLastName(employeeRequest.getMotherLastName())
             .gender(GenderCategory.valueOf(employeeRequest.getGender()))
             .birthdate(Utility.mapLocalDate(employeeRequest.getBirthdate()))
-            .documentType(DocumentTypeCategory.valueOf(employeeRequest.getDocumentType()))
-            .documentNumber(employeeRequest.getDocumentNumber())
+            .document(new Document(employeeRequest.getDocument()))
             .contact(new Contact(employeeRequest.getContactInfo()))
             .company(new Company(employeeRequest.getCompany()))
             .isActive(TRUE)
@@ -39,8 +39,7 @@ public class RequestToEmployeeMapper {
             .motherLastName(employee.getMotherLastName())
             .gender(employee.getGender().name())
             .birthdate(Utility.formatDate(employee.getBirthdate()))
-            .documentType(employee.getDocumentType().name())
-            .documentNumber(employee.getDocumentNumber())
+            .document(new DocumentResponse(employee.getDocument()))
             .contact(new ContactResponse(employee.getContact()))
             .company(new CompanyResponse(employee.getCompany()))
             .build();

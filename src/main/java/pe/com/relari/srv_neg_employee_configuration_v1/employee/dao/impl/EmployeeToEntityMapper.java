@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Company;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Contact;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Credential;
+import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Document;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.domain.Employee;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.entity.CompanyEntity;
 import pe.com.relari.srv_neg_employee_configuration_v1.employee.model.entity.ContactEntity;
@@ -36,8 +37,10 @@ public class EmployeeToEntityMapper {
             .motherLastName(employeeEntity.getMotherLastName())
             .gender(employeeEntity.getGender())
             .birthdate(employeeEntity.getBirthdate())
-            .documentType(employeeEntity.getDocumentType())
-            .documentNumber(employeeEntity.getDocumentNumber())
+            .document(new Document(
+                    employeeEntity.getDocumentType(),
+                    employeeEntity.getDocumentNumber()
+            ))
             .credential(new Credential(
                     employeeEntity.getUsername(),
                     employeeEntity.getPassword()
@@ -98,8 +101,8 @@ public class EmployeeToEntityMapper {
             .fatherLastName(employee.getFatherLastName())
             .motherLastName(employee.getMotherLastName())
             .gender(employee.getGender())
-            .documentType(employee.getDocumentType())
-            .documentNumber(employee.getDocumentNumber())
+            .documentType(employee.getDocument().getType())
+            .documentNumber(employee.getDocument().getNumber())
             .birthdate(employee.getBirthdate())
             .isActive(employee.getIsActive())
             .creationDate(LocalDateTime.now())

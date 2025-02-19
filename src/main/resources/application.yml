@@ -1,7 +1,7 @@
 spring:
   application:
     name: 'srv-neg-employee-configuration-v1'
-  profiles.active: local
+  profiles.active: postgresql
 
   config:
     import: env-dev.yml

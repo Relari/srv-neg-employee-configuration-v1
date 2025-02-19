@@ -21,11 +21,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorFactory {
 
-  @Value("${spring.application.name}")
   private String applicationName;
-
-  @Autowired
   private ErrorProperties errorProperties;
+
+    public ErrorFactory(
+        @Value("${spring.application.name}")
+        String applicationName,
+        ErrorProperties errorProperties) {
+        this.applicationName = applicationName;
+        this.errorProperties = errorProperties;
+    }
 
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ErrorResponse> apiException(

@@ -1,5 +1,5 @@
 DB_URL: jdbc:postgresql://localhost/DB_LOCAL_DEFAULT
-DB_USER: root
+DB_USER: postgres
 DB_PASS: 123456
 
 EUREKA_SERVER_URL: http://localhost:8084/eureka/

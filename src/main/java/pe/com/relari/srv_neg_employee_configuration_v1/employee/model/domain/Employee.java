@@ -34,8 +34,7 @@ public class Employee {
   private GenderCategory gender;
   private LocalDate birthdate;
 
-  private DocumentTypeCategory documentType;
-  private String documentNumber;
+  private Document document;
 
   private Contact contact;
 

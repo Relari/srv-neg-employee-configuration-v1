@@ -57,21 +57,7 @@ public class EmployeeResponse {
           implementation = String.class)
   private String birthdate;
 
-  @Schema(
-          description = "Representa el tipo de documento del empleado",
-          name = "documentType",
-          implementation = String.class,
-          example = "DNI")
-  @JsonProperty("documentType")
-  private String documentType;
-
-  @Schema(
-          description = "Representa el numero de documento del empleado",
-          name = "documentNumber",
-          implementation = String.class,
-          example = "12345678")
-  @JsonProperty("documentNumber")
-  private String documentNumber;
+  private DocumentResponse document;
 
   private ContactResponse contact;
 

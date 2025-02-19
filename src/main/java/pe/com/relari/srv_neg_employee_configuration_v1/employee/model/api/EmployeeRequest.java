@@ -92,29 +92,8 @@ public class EmployeeRequest {
   @JsonProperty("birthdate")
   private String birthdate;
 
-  @Schema(
-          description = "Representa el tipo de documento del empleado",
-          name = "documentType",
-          implementation = String.class,
-          pattern = Constants.REGEXP_TIPO_DOCUMENTO,
-          example = "DNI",
-          required = true)
-  @NotNull
-  @NotBlank
-  @Pattern(regexp = Constants.REGEXP_TIPO_DOCUMENTO)
-  @JsonProperty("documentType")
-  private String documentType;
-
-  @Schema(
-          description = "Representa el numero de documento del empleado",
-          name = "documentNumber",
-          implementation = String.class,
-          example = "12345678",
-          required = true)
-  @NotNull
-  @NotBlank
-  @JsonProperty("documentNumber")
-  private String documentNumber;
+  @Valid
+  private DocumentRequest document;
 
   @Valid
   private ContactRequest contactInfo;
